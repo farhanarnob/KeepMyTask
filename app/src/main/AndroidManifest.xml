@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".TaskEditorActivity"
+            android:parentActivityName=".TaskListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TaskListActivity" />
+
+        </activity>
         <provider
             android:name=".data.TaskProvider"
             android:authorities="me.farhanarnob.keepmytask"

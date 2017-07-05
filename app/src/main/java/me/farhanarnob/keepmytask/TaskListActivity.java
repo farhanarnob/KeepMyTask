@@ -1,16 +1,18 @@
 package me.farhanarnob.keepmytask;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.Toast;
 
 import me.farhanarnob.keepmytask.data.TaskContract.TaskEntry;
-import me.farhanarnob.keepmytask.data.TaskDBHelper;
 
 /**
  * Created by Farhan Rahman Arnob on ${05-Jul-17}.
@@ -33,14 +35,22 @@ import me.farhanarnob.keepmytask.data.TaskDBHelper;
 
 public class TaskListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int TASK_LOADER = 1;
-    private TaskDBHelper mTaskDBHelper;
     private TaskCursorAdapter mTaskCursorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
-        mTaskDBHelper = new TaskDBHelper(this);
+
+        // Setup FAB to open TaskEditorActivity
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TaskListActivity.this, TaskEditorActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // grid view and adding cursor loader
         GridView gridView = (GridView) findViewById(R.id.grid_view_task_list);

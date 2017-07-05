@@ -61,10 +61,10 @@ class TaskCursorAdapter extends CursorAdapter {
         long cDateUpdatedUnix = cursor.getLong(cursor.getColumnIndex(
                 TaskEntry.COLUMN_TASK_DATE_UPDATED));
 
-        String cDateCreated = timeFormat(cDateCreatedUnix);
+        String cDateCreated = context.getString(R.string.created_on) + timeFormat(cDateCreatedUnix);
         String cDateUpdated;
         if (cDateUpdatedUnix != 0) {
-            cDateUpdated = timeFormat(cDateUpdatedUnix);
+            cDateUpdated = context.getString(R.string.updated_on) + timeFormat(cDateUpdatedUnix);
         } else {
             cDateUpdated = context.getString(R.string.never_updated);
         }
@@ -79,7 +79,7 @@ class TaskCursorAdapter extends CursorAdapter {
 
     private String timeFormat(Long unixTime) {
         Date date = new Date(unixTime * 1000L);
-        SimpleDateFormat sdf = new SimpleDateFormat("mm:HH, dd-MM-yy",
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy",
                 Locale.getDefault());
         return sdf.format(date);
     }
