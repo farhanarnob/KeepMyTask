@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.GridView;
 
 import me.farhanarnob.keepmytask.data.TaskContract.TaskEntry;
 import me.farhanarnob.keepmytask.data.TaskDBHelper;
@@ -12,7 +13,7 @@ import me.farhanarnob.keepmytask.data.TaskDBHelper;
  * Created by Farhan Rahman Arnob on ${05-Jul-17}.
  * For coding task of INTELLIJ SYSTEM SOLUTION SDN BHD.
  * <p>
- * Copyright Farhan Rahman Arnob
+ * Copyright 2017 Farhan Rahman Arnob
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,19 +29,23 @@ import me.farhanarnob.keepmytask.data.TaskDBHelper;
  */
 
 public class TaskListActivity extends AppCompatActivity {
-    private SQLiteDatabase db;
     private TaskDBHelper mTaskDBHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
         mTaskDBHelper = new TaskDBHelper(this);
-        testTaskInfo();
+
+        // grid view and adding cursor loader
+        GridView gridView = (GridView) findViewById(R.id.grid_view_task_list);
+        TaskCursorAdapter mTaskCursorAdapter = new TaskCursorAdapter(this, null);
+        gridView.setAdapter(mTaskCursorAdapter);
     }
 
     // SQLite is working or not
     private void testTaskInfo() {
-        db = mTaskDBHelper.getReadableDatabase();
+        SQLiteDatabase db = mTaskDBHelper.getReadableDatabase();
         String[] projection = {
                 TaskEntry._ID,
                 TaskEntry.COLUMN_TASK_NAME,

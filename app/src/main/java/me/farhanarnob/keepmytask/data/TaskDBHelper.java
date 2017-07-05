@@ -10,7 +10,7 @@ import me.farhanarnob.keepmytask.data.TaskContract.TaskEntry;
  * Created by Farhan Rahman Arnob on ${05-Jul-17}.
  * For coding task of INTELLIJ SYSTEM SOLUTION SDN BHD.
  * <p>
- * Copyright Farhan Rahman Arnob
+ * Copyright 2017 Farhan Rahman Arnob
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
