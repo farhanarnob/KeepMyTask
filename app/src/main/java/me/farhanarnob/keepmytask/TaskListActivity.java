@@ -1,10 +1,13 @@
 package me.farhanarnob.keepmytask;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import me.farhanarnob.keepmytask.data.TaskContract.TaskEntry;
 import me.farhanarnob.keepmytask.data.TaskDBHelper;
@@ -28,8 +31,10 @@ import me.farhanarnob.keepmytask.data.TaskDBHelper;
  * limitations under the License.
  */
 
-public class TaskListActivity extends AppCompatActivity {
+public class TaskListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+    private static final int TASK_LOADER = 1;
     private TaskDBHelper mTaskDBHelper;
+    private TaskCursorAdapter mTaskCursorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +44,16 @@ public class TaskListActivity extends AppCompatActivity {
 
         // grid view and adding cursor loader
         GridView gridView = (GridView) findViewById(R.id.grid_view_task_list);
-        TaskCursorAdapter mTaskCursorAdapter = new TaskCursorAdapter(this, null);
+        mTaskCursorAdapter = new TaskCursorAdapter(this, null);
         gridView.setAdapter(mTaskCursorAdapter);
+
+        // kick of loader
+        getSupportLoaderManager().initLoader(TASK_LOADER, null, this);
     }
 
-    // SQLite is working or not
-    private void testTaskInfo() {
-        SQLiteDatabase db = mTaskDBHelper.getReadableDatabase();
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+
         String[] projection = {
                 TaskEntry._ID,
                 TaskEntry.COLUMN_TASK_NAME,
@@ -53,7 +61,25 @@ public class TaskListActivity extends AppCompatActivity {
                 TaskEntry.COLUMN_TASK_DATE_CREATED,
                 TaskEntry.COLUMN_TASK_DATE_UPDATED
         };
-        Cursor taskCursor = db.query(TaskEntry.TABLE_NAME, projection, null, null, null, null, null);
-        taskCursor.close();
+        return new CursorLoader(
+                this,
+                TaskEntry.CONTENT_URI,
+                projection,
+                null,
+                null,
+                null
+        );
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        Toast.makeText(getApplicationContext(), "Provider working", Toast.LENGTH_SHORT).show();
+        mTaskCursorAdapter.swapCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        Toast.makeText(getApplicationContext(), "Provider resetting", Toast.LENGTH_SHORT).show();
+        mTaskCursorAdapter.swapCursor(null);
     }
 }
