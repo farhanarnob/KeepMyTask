@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">Keep My Task</string>
+    <string name="dummy_description">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</string>
+    <string name="work_on_friday">Work on Friday</string>
+    <string name="never_updated">Never Updated</string>
+    <string name="task_title">Task Name</string>
+    <string name="description">Description of the task</string>
+    <string name="add_new_task">Add new task</string>
+    <string name="view_and_edit_task">View or Edit Task</string>
+    <string name="delete_dialog_msg">Delete task?</string>
+    <string name="delete">Delete</string>
+    <string name="editor_delete_task_failed">Task not deleted</string>
+    <string name="editor_delete_task_successful">Task deleted</string>
+    <string name="cancel">Cancel</string>
+    <string name="editor_insert_task_failed">Task not inserted</string>
+    <string name="editor_insert_task_successful">Task inserted</string>
+    <string name="editor_task_update_failed">Update Failed</string>
+    <string name="editor_task_update_successful">Update Successful</string>
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+    <string name="discard">Discard</string>
+    <string name="keep_editing">Keep editing</string>
+    <string name="action_delete_all_entries">Delete all Tasks</string>
+    <string name="action_save">save</string>
+    <string name="action_delete">Delete</string>
+    <string name="created_on">Created on: </string>
+    <string name="updated_on">Updated on: </string>
+    <string name="no_description">No Description added yet!</string>
+    <string name="all_task_deleted">All tasks deleted</string>
+    <string name="all_tasks_deletion_failed">No Change!</string>
+    <string name="empty_view_subtitle_text">Get started by adding a task</string>
+    <string name="empty_view_title_text">It\'s a bit lonely here..</string>
 </resources>
