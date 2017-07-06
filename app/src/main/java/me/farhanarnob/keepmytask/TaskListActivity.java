@@ -10,6 +10,8 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -57,6 +59,11 @@ public class TaskListActivity extends AppCompatActivity implements LoaderManager
 
         // grid view and adding cursor loader
         GridView gridView = (GridView) findViewById(R.id.grid_view_task_list);
+
+        // Add empty View
+        View emptyView = findViewById(R.id.empty_view);
+        gridView.setEmptyView(emptyView);
+
         mTaskCursorAdapter = new TaskCursorAdapter(this, null);
         gridView.setAdapter(mTaskCursorAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -91,6 +98,37 @@ public class TaskListActivity extends AppCompatActivity implements LoaderManager
                 null,
                 null
         );
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu options from the res/menu/menu_catalog.xml file.
+        // This adds menu items to the app bar.
+        getMenuInflater().inflate(R.menu.menu_task_list, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // User clicked on a menu option in the app bar overflow menu
+        switch (item.getItemId()) {
+            // Respond to a click on the "Delete all entries" menu option
+            case R.id.action_delete_all_entries:
+                deleteAllTasks();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteAllTasks() {
+        int rowDeleted = getContentResolver().delete(TaskEntry.CONTENT_URI, null, null);
+        if (rowDeleted > 0) {
+            Toast.makeText(getApplicationContext(), R.string.all_task_deleted,
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), R.string.all_tasks_deletion_failed,
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

@@ -27,4 +27,6 @@
     <string name="no_description">No Description added yet!</string>
     <string name="all_task_deleted">All tasks deleted</string>
     <string name="all_tasks_deletion_failed">All tasks Detetion failed</string>
+    <string name="empty_view_subtitle_text">Get started by adding a task</string>
+    <string name="empty_view_title_text">It\'s a bit lonely here..</string>
 </resources>

@@ -86,8 +86,10 @@ public class TaskEditorActivity extends AppCompatActivity implements LoaderManag
         mNameEditText = (EditText) findViewById(R.id.edit_task_name);
         mDescriptionEditText = (EditText) findViewById(R.id.edit_description);
 
+
         mNameEditText.setOnTouchListener(mTouchListener);
         mDescriptionEditText.setOnTouchListener(mTouchListener);
+
 
     }
 
