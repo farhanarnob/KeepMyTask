@@ -60,6 +60,8 @@ class TaskCursorAdapter extends CursorAdapter {
         if (cDescription == null || cDescription.equals("")) {
             cDescription = context.getString(R.string.no_description);
             tvDescription.setTextColor(Color.BLUE);
+        } else {
+            tvDescription.setTextColor(Color.BLACK);
         }
 
         long cDateCreatedUnix = cursor.getLong(cursor.getColumnIndex(
@@ -85,7 +87,7 @@ class TaskCursorAdapter extends CursorAdapter {
 
     private String timeFormat(Long unixTime) {
         Date date = new Date(unixTime * 1000);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy",
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yy",
                 Locale.getDefault());
         return sdf.format(date);
     }

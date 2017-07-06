@@ -48,7 +48,7 @@ public class TaskEditorActivity extends AppCompatActivity implements LoaderManag
     private static final int BACK_PRESSED_BUTTON = 2;
     private static final int HOME_BUTTON = 3;
     Uri mCurrentTaskUri;
-    boolean mTaskHasChanged = true;
+    boolean mTaskHasChanged = false;
     /**
      * EditText field to enter the Task's name
      */

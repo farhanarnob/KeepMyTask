@@ -133,13 +133,11 @@ public class TaskListActivity extends AppCompatActivity implements LoaderManager
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        Toast.makeText(getApplicationContext(), "Provider working", Toast.LENGTH_SHORT).show();
         mTaskCursorAdapter.swapCursor(data);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        Toast.makeText(getApplicationContext(), "Provider resetting", Toast.LENGTH_SHORT).show();
         mTaskCursorAdapter.swapCursor(null);
     }
 }

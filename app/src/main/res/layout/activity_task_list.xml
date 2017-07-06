@@ -4,20 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginEnd="5dp"
-    android:layout_marginStart="5dp"
-    android:layout_marginTop="10dp"
+    android:background="#E0F2F1"
+
     tools:context="me.farhanarnob.keepmytask.TaskListActivity">
 
     <GridView
         android:id="@+id/grid_view_task_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:columnWidth="100dp"
         android:gravity="center"
         android:horizontalSpacing="10dp"
         android:numColumns="2"
-        android:paddingTop="10dp"
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp" />
 
@@ -32,6 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:contentDescription="@string/empty_view_title_text"
             android:src="@drawable/ic_empty_task_vector" />
 
         <TextView
