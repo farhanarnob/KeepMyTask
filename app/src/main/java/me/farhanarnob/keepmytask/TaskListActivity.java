@@ -1,7 +1,9 @@
 package me.farhanarnob.keepmytask;
 
+import android.content.ContentUris;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager;
@@ -9,6 +11,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -56,6 +59,15 @@ public class TaskListActivity extends AppCompatActivity implements LoaderManager
         GridView gridView = (GridView) findViewById(R.id.grid_view_task_list);
         mTaskCursorAdapter = new TaskCursorAdapter(this, null);
         gridView.setAdapter(mTaskCursorAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int positon, long id) {
+                Intent editorIntent = new Intent(TaskListActivity.this, TaskEditorActivity.class);
+                Uri uriForUpdateOrDelete = ContentUris.withAppendedId(TaskEntry.CONTENT_URI, id);
+                editorIntent.setData(uriForUpdateOrDelete);
+                startActivity(editorIntent);
+            }
+        });
 
         // kick of loader
         getSupportLoaderManager().initLoader(TASK_LOADER, null, this);

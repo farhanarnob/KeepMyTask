@@ -2,6 +2,7 @@ package me.farhanarnob.keepmytask;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,12 +50,17 @@ class TaskCursorAdapter extends CursorAdapter {
 
         TextView tvName = (TextView) view.findViewById(R.id.text_view_name);
         TextView tvDescription = (TextView) view.findViewById(R.id.text_view_description);
+
         TextView tvDateCreated = (TextView) view.findViewById(R.id.text_view_date_created);
         TextView tvDateUpdated = (TextView) view.findViewById(R.id.text_view_date_updated);
 
         String cName = cursor.getString(cursor.getColumnIndex(TaskEntry.COLUMN_TASK_NAME));
         String cDescription = cursor.getString(cursor.getColumnIndex(
                 TaskEntry.COLUMN_TASK_DESCRIPTION));
+        if (cDescription == null || cDescription.equals("")) {
+            cDescription = context.getString(R.string.no_description);
+            tvDescription.setTextColor(Color.RED);
+        }
 
         long cDateCreatedUnix = cursor.getLong(cursor.getColumnIndex(
                 TaskEntry.COLUMN_TASK_DATE_CREATED));

@@ -2,8 +2,10 @@ package me.farhanarnob.keepmytask;
 
 import android.app.LoaderManager;
 import android.content.ContentValues;
+import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Loader;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -39,7 +41,7 @@ import me.farhanarnob.keepmytask.data.TaskContract.TaskEntry;
  * limitations under the License.
  */
 
-public class TaskEditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Object> {
+public class TaskEditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int EXISTING_PET_LOADER = 1;
     private static final int BACK_PRESSED_BUTTON = 2;
     private static final int HOME_BUTTON = 3;
@@ -175,19 +177,42 @@ public class TaskEditorActivity extends AppCompatActivity implements LoaderManag
     }
 
     @Override
-    public Loader<Object> onCreateLoader(int i, Bundle bundle) {
-        return null;
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        String[] projection = {
+                TaskEntry._ID,
+                TaskEntry.COLUMN_TASK_NAME,
+                TaskEntry.COLUMN_TASK_DESCRIPTION,
+        };
+        return new CursorLoader(
+                getApplicationContext(),
+                mCurrentTaskUri,
+                projection,
+                null,
+                null,
+                null
+        );
     }
 
     @Override
-    public void onLoadFinished(Loader<Object> loader, Object o) {
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        if (cursor.moveToFirst()) {
+            int nameColumnIndex = cursor.getColumnIndex(TaskEntry.COLUMN_TASK_NAME);
+            int descriptionColumnIndex = cursor.getColumnIndex(TaskEntry.COLUMN_TASK_DESCRIPTION);
+
+            String name = cursor.getString(nameColumnIndex);
+            String description = cursor.getString(descriptionColumnIndex);
+
+            mNameEditText.setText(name);
+            mDescriptionEditText.setText(description);
+        }
 
     }
 
     @Override
-    public void onLoaderReset(Loader<Object> loader) {
+    public void onLoaderReset(Loader<Cursor> loader) {
 
     }
+
 
     private void showUnsavedChangeDialog(final int buttonID) {
         DialogInterface.OnClickListener discardButtonClickListener =
