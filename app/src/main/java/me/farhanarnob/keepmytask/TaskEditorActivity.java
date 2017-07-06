@@ -281,4 +281,12 @@ public class TaskEditorActivity extends AppCompatActivity implements LoaderManag
         finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (!mTaskHasChanged) {
+            super.onBackPressed();
+            return;
+        }
+        showUnsavedChangeDialog(BACK_PRESSED_BUTTON);
+    }
 }
