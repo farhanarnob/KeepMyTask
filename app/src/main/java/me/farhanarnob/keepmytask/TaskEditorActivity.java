@@ -20,6 +20,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.concurrent.TimeUnit;
+
 import me.farhanarnob.keepmytask.data.TaskContract.TaskEntry;
 
 /**
@@ -143,7 +145,7 @@ public class TaskEditorActivity extends AppCompatActivity implements LoaderManag
     private void saveTask() {
         String nameString = mNameEditText.getText().toString().trim();
         String descriptionString = mDescriptionEditText.getText().toString();
-        int unixTime = (int) (System.currentTimeMillis());
+        int unixTime = (int) TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
         if (TextUtils.isEmpty(nameString)) {
             return;
         }
