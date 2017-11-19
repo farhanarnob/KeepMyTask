@@ -3,7 +3,8 @@ Created by Farhan Rahman Arnob on 5-Jul-2017. For coding task of INTELLIJ SYSTEM
 
 ***Keep My Task – Sample note keeping app for Android***
 
-This is a sample app, provided to show developers how to make a simple application using SQLite database with content provider.
+It’s a Simple note keeping app for Android, using SQLite Database and
+Content Provider.
 
 This application has –
 Two activities:
