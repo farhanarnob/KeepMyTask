@@ -1,5 +1,5 @@
 # KeepMyTask
-Created by Farhan Rahman Arnob on 5-Jul-2017. For coding task of INTELLIJ SYSTEM SOLUTION SDN BHD.
+Created by Farhan Rahman Arnob on 5-Jul-2017.
 
 ***Keep My Task – Sample note keeping app for Android***
 
